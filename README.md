@@ -1,3 +1,3 @@
 # pokemon
 
-A new Flutter project.
+Flutter + Bloc
