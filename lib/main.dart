@@ -24,8 +24,9 @@ class MainApp extends StatelessWidget {
       child: MaterialApp(
         title: 'Pokemon App',
         theme: ThemeData(
-          colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+          colorScheme: ColorScheme.fromSeed(seedColor: Colors.red),
           useMaterial3: true,
+          scaffoldBackgroundColor: const Color(0xFF383838),
         ),
         home: const PokemonPage(),
       ),

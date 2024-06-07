@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:meta/meta.dart';
 import 'package:pokemon/core/error/failures.dart';
@@ -31,13 +32,14 @@ class SearchPokemonBloc extends Bloc<SearchPokemonEvent, SearchPokemonState> {
       );
     });
     on<OnCapturePokemon>((event, emit) async {
-      emit(SearchPokemonLoading());
+      // emit(SearchPokemonLoading());
 
       final response = await _capturePokemonUsecase(event.pokemon);
 
       response.fold(
         (l) => emit(SearchPokemonFailure(failure: l)),
-        (r) => emit(SearchPokemonInitial()),
+        (r) {},
+        // => emit(SearchPokemonInitial())
       );
     });
     on<OnGetCapturedPokemons>((event, emit) async {

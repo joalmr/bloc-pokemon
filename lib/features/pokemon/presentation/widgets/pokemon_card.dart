@@ -9,17 +9,29 @@ class PokemonCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
+    return Container(
+      padding: const EdgeInsets.all(8),
+      decoration: const BoxDecoration(
+        color: Color(0xFF444444),
+        // borderRadius: BorderRadius.all(Radius.circular(8)),
+      ),
       child: Column(
         children: [
-          // Image.network(pokemon.image),
           SvgPicture.network(
-            height: 150,
-            width: 150,
-            fit: BoxFit.cover,
+            width: 140,
+            height: 140,
+            fit: BoxFit.scaleDown,
             pokemon.image,
           ),
-          Text(pokemon.name),
+          Text(
+            pokemon.name.substring(0, 1).toUpperCase() +
+                pokemon.name.substring(1),
+            style: const TextStyle(
+              color: Colors.white,
+              fontSize: 12,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
         ],
       ),
     );

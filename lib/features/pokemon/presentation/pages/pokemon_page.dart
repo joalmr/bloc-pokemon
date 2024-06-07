@@ -24,11 +24,19 @@ class PokemonPage extends StatelessWidget {
                         onPressed: () =>
                             BlocProvider.of<SearchPokemonBloc>(context)
                                 .add(OnSearchPokemon()),
+                        style: ButtonStyle(
+                          foregroundColor:
+                              WidgetStateProperty.all(const Color(0xFF999999)),
+                        ),
                         child: const Text('Buscar pokemon')),
                     TextButton(
                         onPressed: () =>
                             BlocProvider.of<SearchPokemonBloc>(context)
                                 .add(OnGetCapturedPokemons()),
+                        style: ButtonStyle(
+                          foregroundColor:
+                              WidgetStateProperty.all(const Color(0xFF999999)),
+                        ),
                         child: const Text('Ver mis pokemones capturados'))
                   ],
                 ),
@@ -44,43 +52,67 @@ class PokemonPage extends StatelessWidget {
                         onPressed: () =>
                             BlocProvider.of<SearchPokemonBloc>(context)
                                 .add(OnSearchPokemon()),
+                        style: ButtonStyle(
+                          foregroundColor:
+                              WidgetStateProperty.all(const Color(0xFF999999)),
+                        ),
                         child: const Text('Buscar otro pokemon')),
                     TextButton(
                         onPressed: () =>
                             BlocProvider.of<SearchPokemonBloc>(context)
                                 .add(OnGetCapturedPokemons()),
+                        style: ButtonStyle(
+                          foregroundColor:
+                              WidgetStateProperty.all(const Color(0xFF999999)),
+                        ),
                         child: const Text('Ver mis pokemones capturados')),
                     TextButton(
-                        onPressed: () =>
-                            BlocProvider.of<SearchPokemonBloc>(context)
-                                .add(OnCapturePokemon(pokemon: state.pokemon)),
-                        child: Text('Capturar a ${state.pokemon.name}'))
+                        onPressed: () {
+                          BlocProvider.of<SearchPokemonBloc>(context)
+                              .add(OnCapturePokemon(pokemon: state.pokemon));
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            const SnackBar(
+                              backgroundColor: Color(0xFF001900),
+                              content: Text('Pokemon capturado'),
+                            ),
+                          );
+                        },
+                        style: ButtonStyle(
+                          foregroundColor:
+                              WidgetStateProperty.all(const Color(0xFF999999)),
+                        ),
+                        child: Text(
+                            'Capturar a ${state.pokemon.name.substring(0, 1).toUpperCase() + state.pokemon.name.substring(1)}'))
                   ],
                 ),
               );
             case SearchPokemonList():
-              return Center(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    SizedBox(
-                      height: 200,
-                      child: ListView(
-                        shrinkWrap: true,
-                        scrollDirection: Axis.horizontal,
-                        children: state.pokemons
-                            .map((p) => PokemonCard(pokemon: p))
-                            .toList(),
+              return Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Expanded(
+                    child: GridView(
+                      gridDelegate:
+                          const SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: 2,
                       ),
+                      children: state.pokemons
+                          .map((p) => PokemonCard(pokemon: p))
+                          .toList(),
                     ),
-                    TextButton(
-                        onPressed: () =>
-                            BlocProvider.of<SearchPokemonBloc>(context)
-                                .add(OnSearchPokemon()),
-                        child: const Text('Volver y buscar pokemon')),
-                  ],
-                ),
+                  ),
+                  TextButton(
+                    onPressed: () => BlocProvider.of<SearchPokemonBloc>(context)
+                        .add(OnSearchPokemon()),
+                    style: ButtonStyle(
+                      foregroundColor:
+                          WidgetStateProperty.all(const Color(0xFF999999)),
+                    ),
+                    child: const Text('Volver y buscar pokemon'),
+                  ),
+                  const SizedBox(height: 30),
+                ],
               );
             case SearchPokemonFailure():
               return Center(
@@ -94,6 +126,10 @@ class PokemonPage extends StatelessWidget {
                         onPressed: () =>
                             BlocProvider.of<SearchPokemonBloc>(context)
                                 .add(OnSearchPokemon()),
+                        style: ButtonStyle(
+                          foregroundColor:
+                              WidgetStateProperty.all(const Color(0xFF999999)),
+                        ),
                         child: const Text('Volver y buscar pokemon'))
                   ],
                 ),
