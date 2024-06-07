@@ -12,7 +12,7 @@ class PokemonCard extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.all(8),
       decoration: const BoxDecoration(
-        color: Color(0xFF444444),
+        color: Color(0xFF383838),
         // borderRadius: BorderRadius.all(Radius.circular(8)),
       ),
       child: Column(
