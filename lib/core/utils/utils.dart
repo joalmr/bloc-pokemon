@@ -1,3 +1,3 @@
 import 'dart:math';
 
-int get randomPokemonId => Random().nextInt(150) + 1;
+int get randomPokemonId => Random().nextInt(251) + 1;
