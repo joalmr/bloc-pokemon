@@ -11,7 +11,7 @@ class PokemonModel extends Pokemon {
     return PokemonModel(
       id: json['id'],
       name: json['name'],
-      image: json['sprites']['front_default'],
+      image: json['sprites']['other']['dream_world']['front_default'],
     );
   }
 
@@ -20,7 +20,11 @@ class PokemonModel extends Pokemon {
       'id': id,
       'name': name,
       'sprites': {
-        'front_default': image,
+        'other': {
+          'dream_world': {
+            'front_default': image,
+          }
+        }
       },
     };
   }

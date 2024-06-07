@@ -24,7 +24,7 @@ class PokemonPage extends StatelessWidget {
                         onPressed: () =>
                             BlocProvider.of<SearchPokemonBloc>(context)
                                 .add(OnSearchPokemon()),
-                        child: const Text('Generar pokemon aleatorio')),
+                        child: const Text('Buscar pokemon')),
                     TextButton(
                         onPressed: () =>
                             BlocProvider.of<SearchPokemonBloc>(context)
@@ -65,7 +65,7 @@ class PokemonPage extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     SizedBox(
-                      height: 150,
+                      height: 200,
                       child: ListView(
                         shrinkWrap: true,
                         scrollDirection: Axis.horizontal,
