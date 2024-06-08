@@ -36,8 +36,8 @@ class HivePokemonLocalDatasourceImpl extends PokemonLocalDatasource {
       final capturePokemons =
           box.values.map((poke) => PokemonModel.fromJson(poke)).toList();
 
-      capturePokemons.sortby((pokemon) => pokemon.id);
-      return 
+      // capturePokemons.sort((a, b) => a.id.compareTo(b.id));
+      return capturePokemons;
     } catch (e) {
       log(e.toString(), name: 'Local Failure');
       throw LocalFailure();
