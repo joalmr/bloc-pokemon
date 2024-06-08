@@ -33,8 +33,11 @@ class HivePokemonLocalDatasourceImpl extends PokemonLocalDatasource {
   Future<List<PokemonModel>> getCapturedPokemonsList() async {
     try {
       Box<dynamic> box = await Hive.openBox('pokemons');
+      final capturePokemons =
+          box.values.map((poke) => PokemonModel.fromJson(poke)).toList();
 
-      return box.values.map((poke) => PokemonModel.fromJson(poke)).toList();
+      capturePokemons.sortby((pokemon) => pokemon.id);
+      return 
     } catch (e) {
       log(e.toString(), name: 'Local Failure');
       throw LocalFailure();
